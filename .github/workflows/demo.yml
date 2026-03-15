@@ -92,7 +92,8 @@ jobs:
           host: ${{ secrets.AZURE_VM_HOST }}
           username: ${{ secrets.AZURE_VM_USER }}
           key: ${{ secrets.AZURE_VM_SSH_KEY }}
-          source: "website-build/*"
+          #source: "website-build/*"
+          source: "build/*"
           target: "/var/www/myapp"
 
       - name: Restart app on VM
