@@ -32,7 +32,6 @@
 #       - name: Deploy
 #         run: echo "Deploying..."
 
-
 name: Deploy website
 
 on:
@@ -81,7 +80,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v4
@@ -94,7 +92,7 @@ jobs:
           host: ${{ secrets.AZURE_VM_HOST }}
           username: ${{ secrets.AZURE_VM_USER }}
           key: ${{ secrets.AZURE_VM_SSH_KEY }}
-          source: "."
+          source: "website-build/*"
           target: "/var/www/myapp"
 
       - name: Restart app on VM
