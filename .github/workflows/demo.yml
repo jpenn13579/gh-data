@@ -87,16 +87,5 @@ jobs:
           host: ${{ secrets.AZURE_VM_HOST }}
           username: ${{ secrets.AZURE_VM_USER }}
           key: ${{ secrets.AZURE_VM_SSH_KEY }}
-          source: "dist/*"
+          source: "dist"
           target: "/var/www/myapp"
-
-      # - name: Restart app on VM
-      #   uses: appleboy/ssh-action@v0.1.10
-      #   with:
-      #     host: ${{ secrets.AZURE_VM_HOST }}
-      #     username: ${{ secrets.AZURE_VM_USER }}
-      #     key: ${{ secrets.AZURE_VM_SSH_KEY }}
-      #     script: |
-      #       cd /var/www/myapp
-      #       npm install --production
-      #       pm2 restart app || pm2 start server.js --name app
