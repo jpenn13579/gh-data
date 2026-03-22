@@ -113,6 +113,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.output.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -120,6 +122,8 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Publish JS filename
+        run: find dist/assets/*.js -type f -execdir echo 'script-file{}' >> $GITHUB_OUTPUT ';'
       - name: Check build folder
         run: ls -la dist
       - name: Upload build artifact
@@ -139,6 +143,8 @@ jobs:
           path: dist
       - name: Output Content
         run: ls
+      - name: Output filename
+        run: echo "${{ needs.build.output.script-file }}"
 
       - name: Copy files to Azure VM
         uses: appleboy/scp-action@v0.1.7
