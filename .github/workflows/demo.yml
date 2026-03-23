@@ -145,7 +145,7 @@ jobs:
       - name: Output Content
         run: ls
       - name: Output filename
-        run: echo "${{ needs.build.output.script-file }}"
+        run: echo "${{ needs.build.outputs.script-file }}"
 
       - name: Copy files to Azure VM
         uses: appleboy/scp-action@v0.1.7
